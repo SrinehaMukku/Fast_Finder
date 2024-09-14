@@ -46,11 +46,15 @@ function App() {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Search Countries and Capitals</h2>
+      <h2 className="search-header">
+        Search for Countries and Capitals
+      </h2>
       <div className="search-container">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
-            <span className="input-group-text search-icon"><i className="fas fa-search"></i></span>
+            <span className="input-group-text search-icon">
+              <i className="fas fa-search"></i>
+            </span>
           </div>
 
           <input
