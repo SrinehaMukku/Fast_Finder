@@ -1,3 +1,4 @@
+/* Container for the search bar */
 .search-container {
   width: 100%;
   max-width: 600px;
@@ -7,15 +8,17 @@
   text-align: center;
 }
 
+/* Customize the input field using Bootstrap */
 .search-input {
   width: 100%;
   padding: 10px;
   font-size: 18px;
-  border: 1px solid #ccc;
   border-radius: 5px;
+  border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Customize the results list using Bootstrap's list-group */
 .results-list {
   list-style-type: none;
   padding: 0;
@@ -39,6 +42,21 @@
   color: #333;
 }
 
-.results-list li:hover {
+/* Bootstrap hover effect on list-group items */
+.results-list li:hover,
+.suggestion-item:hover {
   background-color: #f9f9f9;
+}
+
+/* Suggestion item customization */
+.suggestion-item {
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* Fine-tune Bootstrap's alert for no results */
+.alert {
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 15px;
 }
