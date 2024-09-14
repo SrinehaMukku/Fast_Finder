@@ -1,24 +1,47 @@
 /* Container for the search bar */
 .search-container {
   width: 100%;
-  max-width: 600px;
-  margin: 50px auto;
-  position: relative;
+  max-width: 800px;
+  margin: 20px auto;
   padding: 20px;
   text-align: center;
 }
 
-/* Customize the input field using Bootstrap */
-.search-input {
+/* Input group styling */
+.input-group {
+  position: relative;
   width: 100%;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Customize the results list using Bootstrap's list-group */
+/* Input group prepend for search icon */
+.input-group-prepend {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+/* Search icon styling */
+.search-icon {
+  background: transparent;
+  border: none;
+  font-size: 20px; /* Adjust size as needed */
+  color: #aaa; /* Adjust color as needed */
+  cursor: pointer;
+}
+
+/* Customize the input field */
+.search-input {
+  padding: 12px 40px; /* Adjust padding for the icon */
+  font-size: 18px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #f0f8ff, #e6e6fa);
+  transition: all 0.3s ease;
+}
+
+/* Customize the results list */
 .results-list {
   list-style-type: none;
   padding: 0;
@@ -26,15 +49,19 @@
   max-height: 300px;
   overflow-y: auto;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 25px;
   background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
+/* Style for each result item */
 .results-list li {
-  padding: 10px;
+  padding: 12px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
   text-align: left;
+  transition: background-color 0.3s ease;
 }
 
 .results-list li strong {
@@ -42,21 +69,35 @@
   color: #333;
 }
 
-/* Bootstrap hover effect on list-group items */
-.results-list li:hover,
-.suggestion-item:hover {
+.results-list li:hover {
   background-color: #f9f9f9;
 }
 
-/* Suggestion item customization */
-.suggestion-item {
-  cursor: pointer;
-  padding: 10px;
+/* Dialog overlay to cover the screen */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
 }
 
-/* Fine-tune Bootstrap's alert for no results */
-.alert {
-  font-size: 16px;
-  padding: 10px;
-  margin-top: 15px;
+/* Dialog box styling */
+.dialog-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Button styling */
+.dialog-box .btn {
+  margin-top: 10px;
 }

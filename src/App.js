@@ -5,16 +5,16 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
 
-  // Fetch the JSON data on component mount
   useEffect(() => {
-    fetch("/countries.json")  // Update this with the correct path
+    fetch("/countries.json")
       .then(response => response.json())
       .then(data => setCountries(data))
       .catch(err => console.error("Failed to load country data:", err));
   }, []);
 
-  // Search function to filter countries based on country or capital
   const searchCountry = (input) => {
     setQuery(input);
 
@@ -23,7 +23,6 @@ function App() {
         const countryName = country.country ? country.country.toLowerCase() : "";
         const capitalName = country.capital ? country.capital.toLowerCase() : "";
 
-        // Check if the input matches either the country name or the capital name
         return countryName.includes(input.toLowerCase()) || capitalName.includes(input.toLowerCase());
       });
 
@@ -33,33 +32,45 @@ function App() {
     }
   };
 
-  // Handle click on suggestion to autofill the input
   const handleSuggestionClick = (country) => {
-    setQuery(country.country);  // Autofill the search input with the selected country name
-    setResults([]);             // Clear the results after selection
+    setQuery("");  // Clear the query
+    setResults([]); // Clear the results
+    setSelectedCountry(country);  // Set the selected country
+    setShowDialog(true);  // Show the dialog box
+  };
+
+  const handleCloseDialog = () => {
+    setShowDialog(false);
+    setSelectedCountry(null);
   };
 
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">Search Countries and Capitals</h2>
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          placeholder="Search by country or capital..."
-          value={query}
-          onChange={(e) => searchCountry(e.target.value)}
-          className="form-control"
-        />
+      <div className="search-container">
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text search-icon"><i className="fas fa-search"></i></span>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Search by country or capital..."
+            value={query}
+            onChange={(e) => searchCountry(e.target.value)}
+            className="form-control search-input"
+          />
+        </div>
       </div>
 
-      {results.length === 0 && query && (
+      {results.length === 0 && query && !selectedCountry && (
         <div className="alert alert-warning text-center" role="alert">
           No results found
         </div>
       )}
 
-      {results.length > 0 && (
-        <ul className="list-group">
+      {results.length > 0 && !selectedCountry && (
+        <ul className="list-group results-list">
           {results.map((country, index) => (
             <li
               key={index}
@@ -75,6 +86,19 @@ function App() {
             </li>
           ))}
         </ul>
+      )}
+
+      {showDialog && selectedCountry && (
+        <div className="dialog-overlay">
+          <div className="dialog-box">
+            <h3>{selectedCountry.country}</h3>
+            <p><strong>Capital:</strong> {selectedCountry.capital}</p>
+            <p><strong>Population:</strong> {selectedCountry.population ? selectedCountry.population.toLocaleString() : "N/A"}</p>
+            <p><strong>Official Language:</strong> {selectedCountry.official_language ? selectedCountry.official_language : "N/A"}</p>
+            <p><strong>Currency:</strong> {selectedCountry.currency ? selectedCountry.currency : "N/A"}</p>
+            <button onClick={handleCloseDialog} className="btn btn-primary">Close</button>
+          </div>
+        </div>
       )}
     </div>
   );
