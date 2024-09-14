@@ -1,3 +1,19 @@
+/* Apply background image and gradient to the entire page */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif; /* Choose a clean font */
+}
+
+body {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.3), /* Dark overlay for better readability */
+    rgba(0, 0, 0, 0.3)
+  ), url('/public/map.jpeg') no-repeat center center fixed; /* Add your image path here */
+  background-size: cover; /* Ensure the background covers the entire page */
+  color: #333; /* Ensure text color is readable */
+}
+
 /* Container for the search bar */
 .search-container {
   width: 100%;
@@ -5,6 +21,9 @@
   margin: 20px auto;
   padding: 20px;
   text-align: center;
+  background: linear-gradient(to bottom, rgba(240, 248, 255, 0.8), rgba(230, 230, 250, 0.8)), #fff; /* Add gradient overlay for readability */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Input group styling */
@@ -23,11 +42,13 @@
 
 /* Search icon styling */
 .search-icon {
-  background: transparent;
-  border: none;
+  background: #6c63ff; /* Add a background color */
+  border-radius: 50%;
+  padding: 5px;
   font-size: 20px; /* Adjust size as needed */
-  color: #aaa; /* Adjust color as needed */
+  color: #fff; /* White color for the icon */
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Customize the input field */
@@ -35,10 +56,16 @@
   padding: 12px 40px; /* Adjust padding for the icon */
   font-size: 18px;
   border-radius: 25px;
-  border: 1px solid #ccc;
+  border: 1px solid #6c63ff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to right, #f0f8ff, #e6e6fa);
+  background: #fff; /* Change background to white for better readability */
   transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #6c63ff; /* Border color on focus */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 
 /* Customize the results list */
@@ -48,7 +75,7 @@
   margin-top: 10px;
   max-height: 300px;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #6c63ff;
   border-radius: 25px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -61,7 +88,7 @@
   border-bottom: 1px solid #eee;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .results-list li strong {
@@ -70,7 +97,8 @@
 }
 
 .results-list li:hover {
-  background-color: #f9f9f9;
+  background-color: #f0f8ff;
+  color: #6c63ff;
 }
 
 /* Dialog overlay to cover the screen */
@@ -95,9 +123,27 @@
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  border: 1px solid #6c63ff;
 }
 
 /* Button styling */
 .dialog-box .btn {
   margin-top: 10px;
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dialog-box .btn:hover {
+  background-color: #5a54f0;
+}
+
+/* Ensure the search icon styling */
+.search-icon {
+  font-size: 1.2rem; /* Adjust size as needed */
+  color: #fff; /* Adjust color as needed */
 }
