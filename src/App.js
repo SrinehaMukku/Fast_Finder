@@ -47,7 +47,7 @@ function App() {
   return (
     <div className="container mt-5">
       <h2 className="search-header">
-        Search for Countries and Capitals
+        Search for Countries and Capitals you want to know about
       </h2>
       <div className="search-container">
         <div className="input-group mb-3">
